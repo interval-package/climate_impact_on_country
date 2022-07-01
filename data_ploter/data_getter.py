@@ -34,6 +34,3 @@ def get_connected_data():
     return
 
 
-get_connected_data()
-
-print(get_data_from_base('GMSL'))
