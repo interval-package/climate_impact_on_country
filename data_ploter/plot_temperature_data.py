@@ -10,6 +10,7 @@ def disp():
     tab = pd.read_csv(temperature_path, index_col=None)
     tab.dropna(inplace=True)
     data = tab.values
+    print(data)
     print(data[:, 2])
     plt.plot(data[:, 2])
     plt.plot(data[:, 3])
