@@ -25,9 +25,12 @@ def get_data_from_base(name):
 
 def get_connected_data():
     ques = """
-    select * from CO2, Methane, GMSL
-    where CO2.DateTime = Methane.DateTime and
-    Methane.DateTime = GMSL.DateTime
+        select CO2.DateTime, Monthly_Data, Trend,  Reconstructed_GMSL, m_avg, y_avg 
+        from CO2, Methane, GMSL, temperature
+        where 
+        CO2.DateTime = Methane.DateTime and
+        Methane.DateTime = GMSL.DateTime and
+        temperature.DateTime = CO2.DateTime
     """
     df = pd.read_sql(ques, conn)
     print(df)

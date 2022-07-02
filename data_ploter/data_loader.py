@@ -55,12 +55,15 @@ def load_2_DataBase():
         temp.to_sql(iter_name, con=conn, if_exists='replace', index=False)
 
 
-# load_2_DataBase()
-tar = path.join('..', 'data', 'temperature' + '.csv')
-tar = pd.read_csv(tar)
-# tar.dropna(axis=1, inplace=True)
-# tar['DateTime'] = tar['DateTime'].apply(switch_datetime)
-tar.dropna(inplace=True)
-print(tar)
-# tar.to_sql('GMSL', con=conn, if_exists='replace', index=False)
-
+if __name__ == '__main__':
+    # load_2_DataBase()
+    tar = path.join('..', 'data', 'temperature' + '.csv')
+    tar = pd.read_csv(tar)
+    # tar.dropna(axis=1, inplace=True)
+    # tar['DateTime'] = tar['DateTime'].apply(switch_datetime)
+    tar.dropna(inplace=True)
+    print(tar)
+    # tar.to_sql('GMSL', con=conn, if_exists='replace', index=False)
+    temp_tab = tar[['m_avg', 'y_avg']]
+    temp_tab['DateTime'] = tar.apply(func=lambda x: str(int(x['year'])) + '/' + str(int(x['month'])), axis=1)
+    temp_tab.to_sql(name='temperature', con=conn, index=False, if_exists='replace')

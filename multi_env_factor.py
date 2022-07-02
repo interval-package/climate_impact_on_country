@@ -10,9 +10,10 @@ class multi_env_factor_analysis:
     """
 
     def __init__(self):
+        self.tab = get_connected_data()
         pass
 
 
 if __name__ == '__main__':
 
-    get_connected_data()
+    pass
