@@ -175,13 +175,13 @@ class temperature_trend:
         data = np.apply_along_axis(func1d=np.mean, axis=1, arr=self.process_data())
         model = ARIMA(data, order=(10, 1, 4)).fit()  # 传入参数，构建并拟合模型
         predict_data = model.predict(1, len(data))  # 预测数据
-        forcast_data = model.forecast(10)
+        forecast_data = model.forecast(30)
         f = plt.figure(facecolor='white')
         plt.subplot(1, 2, 1)
         plt.plot(data, label='训练数据')
         plt.plot(predict_data, label='预测数据')
         plt.legend()
         plt.subplot(1, 2, 2)
-        plt.plot(forcast_data, label='未来预测')
+        plt.plot(forecast_data, label='未来预测')
         plt.legend()
         plt.show()

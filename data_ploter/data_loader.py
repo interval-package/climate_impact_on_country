@@ -56,14 +56,26 @@ def load_2_DataBase():
 
 
 if __name__ == '__main__':
+    # # load_2_DataBase()
+    # tar = path.join('..', 'data', 'sea_temperature' + '.csv')
+    # tar = pd.read_csv(tar)
+    # # tar.dropna(axis=1, inplace=True)
+    # # tar['DateTime'] = tar['DateTime'].apply(switch_datetime)
+    # tar.dropna(inplace=True)
+    # print(tar)
+    # # tar.to_sql('GMSL', con=conn, if_exists='replace', index=False)
+    # temp_tab = tar[['m_avg', 'y_avg']]
+    # temp_tab['DateTime'] = tar.apply(func=lambda x: str(int(x['year'])) + '/' + str(int(x['month'])), axis=1)
+    # temp_tab.to_sql(name='sea_temperature', con=conn, index=False, if_exists='replace')
+
     # load_2_DataBase()
-    tar = path.join('..', 'data', 'temperature' + '.csv')
+    tar = path.join('..', 'data', 'SF4' + '.csv')
     tar = pd.read_csv(tar)
-    # tar.dropna(axis=1, inplace=True)
-    # tar['DateTime'] = tar['DateTime'].apply(switch_datetime)
     tar.dropna(inplace=True)
+    tar['DateTime'] = tar['DateTime'].apply(switch_datetime)
+    tar.rename(columns={'Trend': 'SF4_res'}, inplace=True)
     print(tar)
-    # tar.to_sql('GMSL', con=conn, if_exists='replace', index=False)
-    temp_tab = tar[['m_avg', 'y_avg']]
-    temp_tab['DateTime'] = tar.apply(func=lambda x: str(int(x['year'])) + '/' + str(int(x['month'])), axis=1)
-    temp_tab.to_sql(name='temperature', con=conn, index=False, if_exists='replace')
+
+
+    # print(tar.rename({'Monthly': 'res_t'}, inplace=True))
+    tar[['DateTime', 'SF4_res']].to_sql(name='SF4', con=conn, index=False)

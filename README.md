@@ -22,6 +22,71 @@ B题：全球气候变化与国家综合国力
 
 ## 数据预分析
 
+### 数据平稳性检验
+
+### ADF检验
+
+在这里我们针对了温度，二氧化碳浓度，海平面高度，以及二氧化碳的浓度进行了`adf`检验
+
+针对其他的变量我们，不难有同样的ADF检验，认为$p_{value}<0.002$时检验通过，可以得到不同类型数据的差分次数结果：
+
+| 变量                | 差分次数 | p-value     |
+| ------------------- | -------- | ----------- |
+| CO2                 | 1        | 1.90E-12    |
+| Methane             | 1        | 8.14E-07    |
+| GMSL                | 1        | 4.25E-06    |
+| temperature variant | 0        | 0.001842784 |
+
+
+
+二氧化碳检验结果：
+
+|                             | value        |
+| --------------------------- | ------------ |
+| Test Statistic Value        | -8.036258783 |
+| p-value                     | 1.90E-12     |
+| Lags Used                   | 5            |
+| Number of Observations Used | 107          |
+| Critical Value(1%)          | -3.492995949 |
+| Critical Value(5%)          | -2.888954648 |
+| Critical Value(10%)         | -2.581392919 |
+
+甲烷浓度检验结果：
+
+|                             | value        |
+| --------------------------- | ------------ |
+| Test Statistic Value        | -5.68928158  |
+| p-value                     | 8.14E-07     |
+| Lags Used                   | 5            |
+| Number of Observations Used | 107          |
+| Critical Value(1%)          | -3.492995949 |
+| Critical Value(5%)          | -2.888954648 |
+| Critical Value(10%)         | -2.581392919 |
+
+平均海平面高度检验结果：
+
+|                             | value        |
+| --------------------------- | ------------ |
+| Test Statistic Value        | -5.352818179 |
+| p-value                     | 4.25E-06     |
+| Lags Used                   | 5            |
+| Number of Observations Used | 107          |
+| Critical Value(1%)          | -3.492995949 |
+| Critical Value(5%)          | -2.888954648 |
+| Critical Value(10%)         | -2.581392919 |
+
+温度变化的ADF检验结果：
+
+|                             | value        |
+| --------------------------- | ------------ |
+| Test Statistic Value        | -3.927313154 |
+| p-value                     | 0.001842784  |
+| Lags Used                   | 1            |
+| Number of Observations Used | 112          |
+| Critical Value(1%)          | -3.490131316 |
+| Critical Value(5%)          | -2.887712282 |
+| Critical Value(10%)         | -2.580729646 |
+
 ### 白噪声检验
 
 ### `cusum`检验

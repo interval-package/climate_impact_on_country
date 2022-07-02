@@ -9,7 +9,7 @@ import temperature_analysis as t_ana
 if __name__ == '__main__':
     tar = t_ana.temperature_analysis()
 
-    tar.arima_analysis()
+    # tar.arima_analysis()
 
     temp = t_ana.temperature_trend()
 
