@@ -25,7 +25,7 @@ def get_data_from_base(name):
 
 def get_connected_data():
     ques = """
-        select CO2.DateTime, Monthly_Data, SF4_res , Trend, m_avg, y_avg, res_t
+        select CO2.DateTime, CO2_res, SF4_res , Methane_res, m_avg, y_avg, res_t
         from CO2, Methane, temperature, sea_temperature, SF4
         where 
         CO2.DateTime = Methane.DateTime and

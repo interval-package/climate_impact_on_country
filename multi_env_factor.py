@@ -40,7 +40,7 @@ class multi_env_factor_analysis:
 
     def __init__(self):
         self.tab = get_connected_data()
-        self.tab.rename(columns={'Monthly_Data': 'CO2', 'Trend': 'N2O'}, inplace=True)
+        # self.tab.rename(columns={'Monthly_Data': 'CO2', 'Trend': 'CH4'}, inplace=True)
 
         # data = self.tab.values[:, 1:-2]
         # print(data)
