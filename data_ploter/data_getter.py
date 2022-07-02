@@ -33,4 +33,3 @@ def get_connected_data():
     print(df)
     return
 
-
