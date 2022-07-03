@@ -1,3 +1,4 @@
+import matplotlib.pyplot as plt
 from sklearn.datasets import make_regression
 
 from temperature_analysis import *
@@ -100,10 +101,33 @@ class multi_env_factor_analysis:
         plt.legend()
         plt.show()
 
+    def arima(self):
+        # 利用ARIMA模型进行预测
+        tab = self.tab[['CO2_res', 'SF4_res', 'Methane_res']].dropna()
+        for col in tab:
+            data = self.tab[col].values
+            print(data)
+            model = ARIMA(data, order=(5, 1, 5)).fit()  # 传入参数，构建并拟合模型
+            predict_data = model.predict(1, len(data)+10)  # 预测数据
+            forecast_data = model.forecast(30)
+            f = plt.figure(facecolor='white')
+            plt.subplot(1, 2, 1)
+            plt.title(col)
+            plt.plot(data, label='训练数据')
+            plt.plot(predict_data, label='预测数据')
+            plt.legend()
+            plt.subplot(1, 2, 2)
+            plt.plot(forecast_data, label='未来预测')
+            plt.legend()
+            plt.show()
+
 
 if __name__ == '__main__':
     obj = multi_env_factor_analysis()
-    obj.calc_corr(False)
+    print(obj.tab)
+    obj.arima()
+
+    # obj.calc_corr(False)
     # obj.adf_analysis()
     # obj.disp_raw()
     # obj.bp_fit()

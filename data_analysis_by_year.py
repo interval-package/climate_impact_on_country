@@ -14,7 +14,7 @@ def get_forest_data():
     return
 
 
-def analyze():
+def get_yearly_data(is_normalize=False):
     """
     select * from surface_temperature, forest_tab, population_tab
     where surface_temperature.Category = forest_tab.year
@@ -30,16 +30,17 @@ def analyze():
                     and forest_tab.year = population_tab.year
                     """
                       , con=conn)
+
     # print(tab.astype(float))
     tab = tab.astype(float)
-    tab = tab.apply(lambda x: (x - np.min(x)) / (np.max(x) - np.min(x)))
-    print(tab)
+    if is_normalize:
+        tab = tab.apply(lambda x: (x - np.min(x)) / (np.max(x) - np.min(x)))
+        print(tab)
+        print(tab.corr())
 
-    print(tab.corr())
-
-    pass
+    return tab
 
 
 if __name__ == '__main__':
-    analyze()
+    get_yearly_data()
     pass
